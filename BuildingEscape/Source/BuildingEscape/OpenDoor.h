@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
@@ -28,6 +29,8 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 		// Called every frame
 		virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+		float GetTotalMassOfActorOnPlate();
+
 	private:
 		UPROPERTY(EditAnywhere)
 		float OpenAngle = 90.0f;
@@ -38,8 +41,10 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 		UPROPERTY(EditAnywhere)
 		float DoorCloseDelay = 1.f;
 
+		UPROPERTY(EditAnywhere)
+		float TriggerMass = 30.f;
+
 		float LastDoorOpenTime;
 
-		AActor* ActorThatOpens; //Remember pawn inherets from actor
 		AActor* Owner; // The owning door
 };
