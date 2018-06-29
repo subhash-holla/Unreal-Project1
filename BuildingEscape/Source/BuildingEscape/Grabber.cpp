@@ -57,6 +57,10 @@ void UGrabber::Grab()
 	///If we hit something then attach a physics handle
 	if (ActorHit)
 	{
+		if (!PhysicsHandle)
+		{
+			return;
+		}
 		PhysicsHandle->GrabComponentAtLocation(
 			ComponentToGrab,
 			NAME_None,
@@ -66,6 +70,10 @@ void UGrabber::Grab()
 
 void UGrabber::Release()
 {
+	if (!PhysicsHandle)
+	{
+		return;
+	}
 	PhysicsHandle->ReleaseComponent();
 }
 

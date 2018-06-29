@@ -1,8 +1,9 @@
 // Copyright Subhash 2018.
 
+#include "OpenDoor.h"
 #include "Engine/World.h"
 #include "Containers/Array.h"
-#include "OpenDoor.h"
+
 
 #define OUT
 
@@ -22,6 +23,11 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	Owner = GetOwner();
+
+	if (!PressurePlate)
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s missing pressure plate"), *GetOwner()->GetName());
+	}
 }
 
 void UOpenDoor::OpenDoor()
@@ -59,6 +65,11 @@ float UOpenDoor::GetTotalMassOfActorOnPlate()
 
 	//Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
+	if (!PressurePlate)
+	{ 
+		return TotalMass;
+	}
+	
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	
 	//Iterate through them adding their masses

@@ -36,7 +36,7 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 		float OpenAngle = 90.0f;
 
 		UPROPERTY(EditAnywhere)
-		ATriggerVolume* PressurePlate;
+		ATriggerVolume* PressurePlate = nullptr;
 
 		UPROPERTY(EditAnywhere)
 		float DoorCloseDelay = 1.f;
@@ -46,5 +46,5 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 
 		float LastDoorOpenTime;
 
-		AActor* Owner; // The owning door
+		AActor* Owner = nullptr; // The owning door
 };
